@@ -29,18 +29,18 @@ export class GitClient implements IGitClient {
    * @returns {Promise<IApiResponse>}
    * @memberof GitClient
    */
-  async getResults(request: IApiRequest): Promise<IApiResponse> {
-    debug('getResults request = %o', request);
+  async getSearUsersResults(request: IApiRequest): Promise<IApiResponse> {
+    debug('getSearUsersResults request = %o', request);
 
     const searchResults = await this.searchUsers(request);
 
-    debug('getResults search results = %o', searchResults);
+    debug('getSearUsersResults search results = %o', searchResults);
 
     const fetchedUsers = await Promise.all(
       searchResults.items.map((result) => this.fetchProfile(result.login))
     );
 
-    debug('getResults fetched users = %o', fetchedUsers);
+    debug('getSearUsersResults fetched users = %o', fetchedUsers);
 
     return {
       // eslint-disable-next-line @typescript-eslint/camelcase

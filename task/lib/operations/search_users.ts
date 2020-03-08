@@ -39,6 +39,6 @@ export class SearchUsers implements ISearchUsers {
       throw new InvalidRequest(request.getValidationErrors().join('\n'));
     }
 
-    return this.gitClient.getResults(request.getJson());
+    return this.gitClient.getSearUsersResults(request.getJson());
   }
 }

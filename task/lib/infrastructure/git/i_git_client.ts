@@ -2,11 +2,11 @@ import { IApiResponse, IApiRequest } from '../../models';
 
 export interface IGitClient {
   /**
-   * Get search result
+   * Get search result for user search
    *
    * @param {IApiRequest} request
    * @returns {Promise<IApiResponse>}
    * @memberof IGitClient
    */
-  getResults(request: IApiRequest): Promise<IApiResponse>;
+  getSearUsersResults(request: IApiRequest): Promise<IApiResponse>;
 }

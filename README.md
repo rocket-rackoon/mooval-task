@@ -59,6 +59,7 @@ curl --request POST 'http://localhost:9898/api/user.searchUsers' \
     ]
 }
 ```
+
 ## Folder structure
 - `task` - the complete implementation
   - `lib` - contains the application

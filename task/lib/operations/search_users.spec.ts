@@ -14,17 +14,20 @@ import { SearchUsers } from './search_users';
 
 describe('Operations', () => {
   describe('SearchUsers', () => {
-    let gitClientResultStub: sinon.SinonStub<
+    let gitClientSearUsersResults: sinon.SinonStub<
       [IApiRequest],
       Promise<IApiResponse>
     >;
     let searchUsers: SearchUsers;
 
     beforeEach(() => {
-      gitClientResultStub = sinon.stub<[IApiRequest], Promise<IApiResponse>>();
+      gitClientSearUsersResults = sinon.stub<
+        [IApiRequest],
+        Promise<IApiResponse>
+      >();
       searchUsers = new SearchUsers(
         sinon.createStubInstance(GitClient, {
-          getResults: gitClientResultStub
+          getSearUsersResults: gitClientSearUsersResults
         })
       );
     });
@@ -45,7 +48,7 @@ describe('Operations', () => {
         users: [gitUser]
       };
 
-      gitClientResultStub.resolves(gitResponse);
+      gitClientSearUsersResults.resolves(gitResponse);
 
       const request = new ApiRequest(
         requestParams.user,

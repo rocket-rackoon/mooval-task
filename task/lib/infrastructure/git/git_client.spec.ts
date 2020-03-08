@@ -50,7 +50,7 @@ describe('Infrastructure', () => {
     });
 
     it('should send results', async () => {
-      const result = await gitClient.getResults({
+      const result = await gitClient.getSearUsersResults({
         user: 'test',
         language: ['lang']
       });
@@ -67,7 +67,7 @@ describe('Infrastructure', () => {
         items: []
       });
 
-      const result = await gitClient.getResults({
+      const result = await gitClient.getSearUsersResults({
         user: 'test',
         language: ['lang']
       });
@@ -79,7 +79,7 @@ describe('Infrastructure', () => {
     });
 
     it('should call "/search/users" api properly', async () => {
-      await gitClient.getResults(request);
+      await gitClient.getSearUsersResults(request);
 
       const decodedStr = qs.unescape(getStub.getCall(0).args[0]);
       should(decodedStr).eql(
@@ -88,7 +88,7 @@ describe('Infrastructure', () => {
     });
 
     it('should call "/users/" api properly', async () => {
-      await gitClient.getResults(request);
+      await gitClient.getSearUsersResults(request);
 
       const decodedStr = qs.unescape(getStub.getCall(1).args[0]);
       should(decodedStr).eql(`/users/${gitUser.login}`);
@@ -106,7 +106,7 @@ describe('Infrastructure', () => {
         getStub.onCall(1).resolves(gitUser1);
         getStub.onCall(2).resolves(gitUser2);
 
-        const result = await gitClient.getResults(request);
+        const result = await gitClient.getSearUsersResults(request);
         should(result).deepEqual({
           incomplete_results: true,
           users: [gitUser1]
