@@ -6,6 +6,7 @@
 3. The input validation is performed in the model. The swagger spec is only used as documentation.
 4. To have a higher rate set `github_token` in `task/.env` file.
 
+## Execution
 Please check out this code and run the following commands.
 - `make mooval-task-test` -  To execute all the tests
 - `make mooval-task-start` - To start the server
