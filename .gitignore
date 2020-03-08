@@ -1,0 +1,5 @@
+logs
+*.log
+node_modules
+.bash_history
+dist

@@ -1,0 +1,144 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Git User Search",
+    "description": "Search for Git User"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/user.searchUsers": {
+      "post": {
+        "description": "search for Github users based on user name and languages",
+        "operationId": "user.findUser",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "search results",
+            "schema": {
+              "$ref": "#/definitions/response"
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. (May be due to bad credentials)",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "403": {
+            "description": "Forbidden request. (May be due to rate limit)",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "request": {
+      "type": "object",
+      "required": [
+        "user",
+        "language"
+      ],
+      "properties": {
+        "user": {
+          "type": "string"
+        },
+        "language": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "response": {
+      "description": "search result from search",
+      "type": "object",
+      "required": [
+        "incomplete_results",
+        "users"
+      ],
+      "properties": {
+        "incomplete_results": {
+          "type": "boolean",
+          "description": "True indicates that GitHub did not able to complete the request"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/user"
+          }
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "required": [
+        "login",
+        "name",
+        "avatar_url",
+        "followers"
+      ],
+      "properties": {
+        "login": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatar_url": {
+          "type": "string"
+        },
+        "followers": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "error": {
+      "description": "Error response",
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

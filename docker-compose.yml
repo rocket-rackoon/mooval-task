@@ -1,0 +1,12 @@
+version: "2"
+services:
+  mooval:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: mooval
+    ports:
+      - "9898:9898"
+    volumes:
+      - ./task:/home/mooval/
+    command: tail -f /dev/null
