@@ -1,6 +1,6 @@
 ### Thank you for reviewing my code. I would appreciate feedback.
 
-### Note
+## Note
 1. If `GitHub` API timeout, then `incomplete_results` attribute in will hold `false`.
 2. If unable to find any users, the `users` attribute will be an empty array.
 3. The input validation is performed in the model. The swagger spec is only used as documentation.
@@ -11,7 +11,7 @@ Please check out this code and run the following commands.
 - `make mooval-task-start` - To start the server
 - `make mooval-task-dev` - To use connect to the shell
 
-### Specification
+## Specification
 The server listens to port `9898`.
 - `/spec/def` - To view the swagger specification.
 
@@ -19,7 +19,7 @@ The server listens to port `9898`.
 - `/spec/docs` - To view a much better view of the specs.
    - `http://localhost:9898/spec/docs`
 
-### API endpoint
+## API endpoint
 Currently, only one endpoint is available.
 - `/api/user.searchUsers` - to perform search operation
 
@@ -82,3 +82,7 @@ configurations are located in `task/.env`.
 - `github_endpoint` - GitHub endpoint.
 - `github_token` - Personal Github token. (Not a mandatory value)
 - `server_port` - Server port
+
+## Tests
+- Each folder contains tests file name as `*.spec.ts`.
+- `task/lib/app/integration_tests` contains integration tests.
